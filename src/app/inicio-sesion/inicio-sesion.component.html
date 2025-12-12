@@ -1,0 +1,40 @@
+<app-header2></app-header2>
+<ion-content class="ion-padding home-page">
+  <div class="top-banner">
+    <div class="banner-content">
+      <ion-button expand="block" class="register-btn">
+        ¡Empieza registrándote!
+      </ion-button>
+
+      <div class="banner-images">
+        <img ngSrc="../../assets/img/sandwich.png" alt="sandwich" height="408" width="612">
+        <img ngSrc="../../assets/img/albondiga.png" alt="albóndigas" height="447" width="559">
+      </div>
+    </div>
+  </div>
+
+  <h1 class="welcome-title">
+    Bienvenido a <span class="brand-name">SmartChef</span>
+  </h1>
+  <div class="login-buttons">
+    <ion-button [routerLink]="'/iniciosesion2'" expand="block" color="light" class="login-btn google">
+      Continuar con Google
+    </ion-button>
+
+  <ion-button [routerLink]="'/iniciosesion2'" expand="block" color="light" class="login-btn facebook">
+    Continuar con Facebook
+  </ion-button>
+
+  <ion-button [routerLink]="'/iniciosesion2'" expand="block" color="light" class="login-btn email">
+    Continuar con Correo
+  </ion-button>
+
+  <ion-button [routerLink]="'/crearcuenta'" expand="block" color="light" class="login-btn account">
+    Crear Cuenta
+  </ion-button>
+  </div>
+  <div class="bottom-image">
+    <img src="../../assets/img/pasta.png" alt="pasta">
+  </div>
+  </ion-content>
+<app-footer2></app-footer2>

@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{ titulo }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancelar()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="onGuardar()">
+    <ion-item>
+      <ion-label position="stacked">Nombre Receta</ion-label>
+      <ion-input [(ngModel)]="nombre" name="Nombre Receta"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Imagen</ion-label>
+      <ion-input type="text" name="Imagen"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Descripción</ion-label>
+      <ion-input type="text" name="Descripción"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Tipo</ion-label>
+      <ion-input type="number" name="Tipo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Ingredientes</ion-label>
+      <ion-input type="text" name="Ingredientes"></ion-input>
+    </ion-item>
+
+    <div class="ion-padding-top">
+      <ion-button expand="block" type="submit">Guardar</ion-button>
+      <ion-button expand="block" fill="clear" (click)="onCancelar()">Cancelar</ion-button>
+    </div>
+  </form>
+</ion-content>

@@ -1,0 +1,34 @@
+<app-header2></app-header2>
+<ion-content class="ion-padding home-page">
+  <div class="top-banner">
+    <div>
+      <h1>¡Crea tu cuenta!</h1>
+
+      <div class="banner-images">
+        <img src="../../assets/img/sandwich.png" alt="sandwich">
+        <img src="../../assets/img/albondiga.png" alt="albóndigas">
+      </div>
+    </div>
+  </div>
+    <form>
+      <ion-list lines="full">
+        <ion-item>
+          <ion-label position="floating">Nombre completo</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Correo electrónico</ion-label>
+          <ion-input type="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password" ></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-button [routerLink]="'/home'">Crear cuenta</ion-button>
+    </form>
+  </ion-content>
+
+<app-footer2></app-footer2>
+
+

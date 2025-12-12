@@ -1,0 +1,76 @@
+
+.top-banner {
+  background: linear-gradient(180deg, #000 0%, #222 100%);
+  border-radius: 20px;
+  margin: 20px auto;
+  padding: 10px;
+  width: 90%;
+  color: white;
+}
+
+.top-banner h1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  background-color: #1a65eb;
+  color: white;
+  border-radius: 10px;
+  margin: 0px;
+}
+
+
+.banner-images {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 8px;
+
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
+
+.texto{
+  font-size: 35px;
+  text-align: center;
+}
+
+.texto2{
+  text-decoration: underline;
+  text-align: center;
+}
+
+.boton1{
+  margin-top: 8px;
+  width: 100%;
+  justify-items: center;
+  --background: #000000;
+  color: white;
+}
+
+.form{
+  padding: 15px;
+  justify-items: center;
+}
+
+.vs{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 55%;
+}
+
+ion-note {
+  margin-left: 16px;
+  font-size: 0.85rem;
+}
+
+ion-button {
+  color: white;
+  border-radius: 10px;
+  align-items: center;
+  padding: 16px;
+}

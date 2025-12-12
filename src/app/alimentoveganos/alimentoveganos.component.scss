@@ -1,0 +1,28 @@
+.foto-princpial{
+  width: 100%;
+}
+
+.foto-header-card{
+  width: 10%;
+  height: 10%;
+  float: left;
+}
+
+.botones{
+  width: 50%;
+  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 25px;
+  justify-self: anchor-center;
+}
+
+.titulo{
+  margin-left: 15px;
+}
+
+.icon-compartir{
+  margin-left: 15px;
+  width: 10%;
+  height: 10%;
+}

@@ -1,0 +1,81 @@
+
+.text{
+  text-align: center;
+  color: black;
+}
+
+.tarjeta1 {
+  height: 25%;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  color: #fff;
+}
+
+.tarjeta2{
+  height: 25%;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  color: #fff;
+}
+
+.tarjeta3{
+  height: 25%;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  color: #fff;
+}
+
+.tarjeta4{
+  height: 25%;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  color: #fff;
+}
+
+.tarjeta4 .card-background{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("../../assets/img/comidabasura.png") no-repeat center center;
+  background-size: cover;
+}
+
+.tarjeta3 .card-background{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("../../assets/img/images.png") no-repeat center center;
+  background-size: cover;
+}
+
+.tarjeta2 .card-background{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("../../assets/img/proteinas.png") no-repeat center center;
+  background-size: cover;
+}
+
+.tarjeta1 .card-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("../../assets/img/Diseno-sin-titulo-17.png") no-repeat center center;
+  background-size: cover;
+}
+
+ion-card-title{
+  color: black;
+  background: azure;
+  border-radius: 20px;
+  padding: 5px;
+  width: max-content;
+  font-size: 30px;
+}
+
+
+

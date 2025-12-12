@@ -1,0 +1,140 @@
+.tarjeta1 {
+  height: 25%;
+  overflow: hidden;
+  background: url("../../assets/img/ensaladacesar.jpg");
+  background-size: cover;
+}
+.imagen-megusta{
+  width: 10%;
+  height: 10%;
+}
+
+.tarjeta2{
+  height: 25%;
+  overflow: hidden;
+  background: url("../../assets/img/SalteadodeVegetalesconTofu.jpg");
+  background-size: cover;
+}
+
+.tarjeta3{
+  height: 25%;
+  overflow: hidden;
+  background: url("../../assets/img/ensalada-quinoa-meditarraneo.jpg");
+  background-size: cover;
+}
+
+.tarjeta4{
+  height: 25%;
+  overflow: hidden;
+  background: url("../../assets/img/crema-calabacin.jpg");
+  background-size: cover;
+}
+
+.tarjeta4 .card-background{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+.tarjeta3 .card-background{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+.tarjeta2 .card-background{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+.tarjeta1 .card-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+.tarjeta1 ion-card-title{
+  color: black;
+  background: azure;
+  border-radius: 20px;
+  padding: 5px;
+  width: max-content;
+}
+
+.tarjeta2 ion-card-title{
+  color: black;
+  background: azure;
+  border-radius: 20px;
+  padding: 5px;
+  font-size: 20px;
+  width: max-content;
+}
+
+.tarjeta3 ion-card-title{
+  color: black;
+  background: azure;
+  border-radius: 20px;
+  padding: 5px;
+  font-size: 20px;
+  width: max-content;
+}
+
+.tarjeta4 ion-card-title{
+  color: black;
+  background: azure;
+  border-radius: 20px;
+  padding: 5px;
+  font-size: 20px;
+  width: max-content;
+}
+
+.RR{
+  margin-bottom: 0%;
+  margin-left: 15px;
+}
+
+.T1{
+  margin-left: 15px;
+  background-color: lightskyblue;
+  padding: 7px;
+  border-radius: 15px;
+  margin-right: 67%;
+}
+
+.header-principal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px 10px 20px;
+  width: 100%;
+}
+
+.textos-izquierda h1.T1 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.textos-izquierda p.RR {
+  margin: 4px 0 0 0;
+  color: #000000;
+}
+
+.boton-derecha ion-button {
+  --background: #3880ff;
+  width: 50px;
+  height: 50px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.textos-izquierda .titulo-con-fondo {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  line-height: 1.2;
+}

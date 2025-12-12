@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Volver</ion-button>
+    </ion-buttons>
+    <ion-title>Editando</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Confirmar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input labelPlacement="stacked" label="Introduce tu nombre" [(ngModel)]="name" placeholder="Nombre"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input labelPlacement="stacked" label="Introduce tus apellidos" [(ngModel)]="apellido" placeholder="Apellidos"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input labelPlacement="stacked" label="Introduce tu email" [(ngModel)]="email" placeholder="Email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input labelPlacement="stacked" label="Introduce tu contraseña" [(ngModel)]="contrasena" placeholder="Contraseña"></ion-input>
+  </ion-item>
+</ion-content>

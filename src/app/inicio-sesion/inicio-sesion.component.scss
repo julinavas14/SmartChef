@@ -1,0 +1,82 @@
+.home-page {
+  --background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.top-banner {
+  background: linear-gradient(180deg, #000 0%, #222 100%);
+  border-radius: 20px;
+  margin: 20px auto;
+  padding: 10px;
+  width: 90%;
+  color: white;
+}
+
+.banner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-btn {
+  --background: #007bff;
+  --border-radius: 20px;
+  font-weight: bold;
+  color: white;
+  text-transform: none;
+}
+
+.banner-images {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 8px;
+
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
+
+.welcome-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.brand-name {
+  color: red;
+  font-weight: bold;
+}
+
+.login-buttons {
+  margin-top: 15px;
+  align-content: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-btn {
+  --border-radius: 12px;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-transform: none;
+  font-weight: 500;
+  color: white;
+  justify-content: flex-start;
+}
+
+.bottom-image {
+  margin-top: 20px;
+
+  img {
+    width: 150px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+}
