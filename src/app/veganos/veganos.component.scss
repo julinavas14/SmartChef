@@ -1,97 +1,3 @@
-.tarjeta1 {
-  height: 25%;
-  overflow: hidden;
-  background: url("../../assets/img/ensaladacesar.jpg");
-  background-size: cover;
-}
-.imagen-megusta{
-  width: 10%;
-  height: 10%;
-}
-
-.tarjeta2{
-  height: 25%;
-  overflow: hidden;
-  background: url("../../assets/img/SalteadodeVegetalesconTofu.jpg");
-  background-size: cover;
-}
-
-.tarjeta3{
-  height: 25%;
-  overflow: hidden;
-  background: url("../../assets/img/ensalada-quinoa-meditarraneo.jpg");
-  background-size: cover;
-}
-
-.tarjeta4{
-  height: 25%;
-  overflow: hidden;
-  background: url("../../assets/img/crema-calabacin.jpg");
-  background-size: cover;
-}
-
-.tarjeta4 .card-background{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-}
-
-.tarjeta3 .card-background{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-}
-
-.tarjeta2 .card-background{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-}
-
-.tarjeta1 .card-background {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-}
-
-.tarjeta1 ion-card-title{
-  color: black;
-  background: azure;
-  border-radius: 20px;
-  padding: 5px;
-  width: max-content;
-}
-
-.tarjeta2 ion-card-title{
-  color: black;
-  background: azure;
-  border-radius: 20px;
-  padding: 5px;
-  font-size: 20px;
-  width: max-content;
-}
-
-.tarjeta3 ion-card-title{
-  color: black;
-  background: azure;
-  border-radius: 20px;
-  padding: 5px;
-  font-size: 20px;
-  width: max-content;
-}
-
-.tarjeta4 ion-card-title{
-  color: black;
-  background: azure;
-  border-radius: 20px;
-  padding: 5px;
-  font-size: 20px;
-  width: max-content;
-}
 
 .RR{
   margin-bottom: 0%;
@@ -137,4 +43,32 @@
   padding: 6px 14px;
   border-radius: 20px;
   line-height: 1.2;
+}
+
+.recetas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.tarjeta-dinamica {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  height: 200px;
+}
+
+.tarjeta-dinamica ion-card-title {
+  color: white;
+}
+
+ion-card-header {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 16px;
 }

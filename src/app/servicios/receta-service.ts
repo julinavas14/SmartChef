@@ -1,18 +1,24 @@
-import {Inject, Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+// src/app/servicios/receta-service.ts
+
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Receta } from '../modelos/receta';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecetaService {
-  private apiURL = "/api";
 
-  private http =  Inject(HttpClient);
+  private apiURL = 'http://localhost:8080';
 
-  constructor() {}
+  constructor(private http: HttpClient) { }
 
-  consultarRecetas(): Observable<any> {
-    return this.http.get(this.apiURL + '/recetas/all')
+  consultarRecetas(): Observable<Receta[]> {
+    return this.http.get<Receta[]>(`${this.apiURL}/recetas/all`);
+  }
+
+  crearReceta(datosReceta: any): Observable<any> {
+    return this.http.post(`${this.apiURL}/recetas/crear`, datosReceta);
   }
 }

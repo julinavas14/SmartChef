@@ -1,18 +1,19 @@
-import { Component, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { RecetaService } from '../servicios/receta-service';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import {Component, Input} from '@angular/core';
+import {FormsModule} from "@angular/forms";
+import {IonicModule, ModalController} from "@ionic/angular";
+import {RecetaService} from "../servicios/receta-service";
 
 @Component({
-  selector: 'app-formularios',
-  templateUrl: './formularios.component.html',
-  styleUrls: ['./formularios.component.scss'],
-  standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule]
+    selector: 'app-formulario2',
+    templateUrl: './formulario2.component.html',
+    styleUrls: ['./formulario2.component.scss'],
+    standalone: true,
+    imports: [
+        FormsModule,
+        IonicModule
+    ]
 })
-export class FormulariosComponent {
+export class Formulario2Component{
   @Input() titulo: string = 'Nueva Receta Con Proteína';
 
   nuevaReceta: any = {
@@ -20,14 +21,11 @@ export class FormulariosComponent {
     imagen: '',
     descripcion: '',
     ingredientesTexto: '',
-    idTipo: 1
+    idTipo: 2
   };
 
 
-  constructor(
-    private modalCtrl: ModalController,
-    private recetaService: RecetaService
-  ) {}
+  constructor(private modalCtrl: ModalController, private recetaService: RecetaService) {}
 
   onCancelar() {
     this.modalCtrl.dismiss(null, 'cancelar');
@@ -57,4 +55,5 @@ export class FormulariosComponent {
       }
     });
   }
+
 }

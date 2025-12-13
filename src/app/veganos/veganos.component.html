@@ -1,5 +1,5 @@
 <app-header></app-header>
-
+<ion-content>
 <div class="header-principal">
   <div class="textos-izquierda">
     <div class="titulo-con-fondo">
@@ -12,39 +12,13 @@
   </div>
 </div>
 
-<ion-card [routerLink]="'/alimentoveganos'" class="tarjeta1">
-  <div class="card-background"></div>
-  <ion-card-header>
-    <div>
-      <ion-card-title>Ensalada Cesar Clásica</ion-card-title>
-    </div>
-  </ion-card-header>
-</ion-card>
-
-<ion-card [routerLink]="''" class="tarjeta2">
-  <div class="card-background"></div>
-  <ion-card-header>
-    <div>
-      <ion-card-title>Salteado de Vegetales con Tofu</ion-card-title>
-    </div>
-  </ion-card-header>
-</ion-card>
-
-<ion-card [routerLink]="''" class="tarjeta3">
-  <div class="card-background"></div>
-  <ion-card-header>
-    <div>
-      <ion-card-title>Ensalada Mediterránea de Quinoa</ion-card-title>
-    </div>
-  </ion-card-header>
-</ion-card>
-
-<ion-card [routerLink]="''" class="tarjeta4">
-  <div class="card-background"></div>
-  <ion-card-header>
-    <div>
-      <ion-card-title>Crema de Calabaza y Zanahoria</ion-card-title>
-    </div>
-  </ion-card-header>
-</ion-card>
+<div class="recetas-grid">
+  <ion-card *ngFor="let r of recetas" class="tarjeta-dinamica" [routerLink]="'/alimentoveganos'">
+    <ion-img [src]="r.imagen"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{ r.nombre }}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+</div>
+</ion-content>
 <app-footer></app-footer>

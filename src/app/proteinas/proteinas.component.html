@@ -1,3 +1,24 @@
 <app-header></app-header>
+<ion-content>
+  <div class="header-principal">
+    <div class="textos-izquierda">
+      <div class="titulo-con-fondo">
+        <h1 class="T1">Proteína</h1>
+      </div>
+      <p class="RR">Recetas Recomendadas</p>
+    </div>
+    <div class="boton-derecha">
+      <ion-button (click)="abrirFormulario()">+</ion-button>
+    </div>
+  </div>
 
+  <div class="recetas-grid">
+    <ion-card *ngFor="let r of recetas" class="tarjeta-dinamica" [routerLink]="'/alimentoveganos'">
+      <ion-img [src]="r.imagen"></ion-img>
+      <ion-card-header>
+        <ion-card-title>{{ r.nombre }}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </div>
+</ion-content>
 <app-footer></app-footer>

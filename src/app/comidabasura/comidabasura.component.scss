@@ -1,0 +1,74 @@
+
+.RR{
+  margin-bottom: 0%;
+  margin-left: 15px;
+}
+
+.T1{
+  margin-left: 15px;
+  background-color: lightskyblue;
+  padding: 7px;
+  border-radius: 15px;
+  margin-right: 67%;
+}
+
+.header-principal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px 10px 20px;
+  width: 100%;
+}
+
+.textos-izquierda h1.T1 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.textos-izquierda p.RR {
+  margin: 4px 0 0 0;
+  color: #000000;
+}
+
+.boton-derecha ion-button {
+  --background: #3880ff;
+  width: 50px;
+  height: 50px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.textos-izquierda .titulo-con-fondo {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  line-height: 1.2;
+}
+
+.recetas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.tarjeta-dinamica {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  height: 200px;
+}
+
+.tarjeta-dinamica ion-card-title {
+  color: white;
+}
+
+ion-card-header {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 16px;
+}
