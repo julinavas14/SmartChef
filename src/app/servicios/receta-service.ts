@@ -1,5 +1,3 @@
-// src/app/servicios/receta-service.ts
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -20,5 +18,9 @@ export class RecetaService {
 
   crearReceta(datosReceta: any): Observable<any> {
     return this.http.post(`${this.apiURL}/recetas/crear`, datosReceta);
+  }
+
+  eliminarReceta(id: number): Observable<any> {
+    return this.http.delete(`${this.apiURL}/recetas/${id}`);
   }
 }

@@ -1,7 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {HeaderComponent} from "../header/header.component";
-import {FooterComponent} from "../footer/footer.component";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { HeaderComponent } from "../header/header.component";
+import { FooterComponent } from "../footer/footer.component";
 import {
+  AlertController,
   IonButton, IonButtons,
   IonCard,
   IonCardHeader,
@@ -9,12 +10,15 @@ import {
   IonHeader,
   IonIcon,
   IonImg, IonItem, IonLabel, IonList,
-  IonModal, IonTitle, IonToolbar, ModalController
+  IonModal, IonTitle, IonToolbar, ModalController, ToastController
 } from "@ionic/angular/standalone";
-import {MiToastComponent} from "../Mitoast/mi-toast.component";
-import {FormulariosComponent} from "../formularios/formularios.component";
-import {addIcons} from "ionicons";
-import {gitCompareOutline} from "ionicons/icons";
+import { MiToastComponent } from "../Mitoast/mi-toast.component";
+import { FormulariosComponent } from "../formularios/formularios.component";
+import { addIcons } from "ionicons";
+import { gitCompareOutline } from "ionicons/icons";
+import { Receta } from "../modelos/receta";
+import { Router } from '@angular/router';
+import {RecetaService} from "../servicios/receta-service";
 
 @Component({
   selector: 'app-alimentoveganos',
@@ -41,21 +45,62 @@ import {gitCompareOutline} from "ionicons/icons";
     IonItem
   ]
 })
-export class AlimentoveganosComponent  implements OnInit {
+export class AlimentoveganosComponent implements OnInit {
 
-  constructor(private modalCtrl: ModalController) {
-    addIcons({gitCompareOutline})
+  receta: Receta | null = null;
+
+  constructor(
+    private modalCtrl: ModalController,
+    private recetaService: RecetaService,
+    private router: Router,
+    private alertController: AlertController,
+    private toastController: ToastController
+  ) {
+    addIcons({ gitCompareOutline });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation?.extras?.state && navigation.extras.state['receta']) {
+      this.receta = navigation.extras.state['receta'] as Receta;
+    }
+
+    if (!this.receta) {
+      console.warn('No se recibió receta. Podrías cargar por ID aquí más adelante.');
+    }
+  }
+
+  async eliminarReceta() {
+    if (!this.receta || !this.receta.id_receta) {
+      await this.mostrarMensaje('Error: Receta no identificada');
+      return;
+    }
+
+    this.recetaService.eliminarReceta(this.receta.id_receta).subscribe({
+      next: async () => {
+        await this.mostrarMensaje('Receta eliminada');
+        this.router.navigate(['/veganos']);
+      },
+      error: async (err) => {
+        console.error('Error al eliminar:', err);
+        await this.mostrarMensaje('No se pudo eliminar la receta');
+      }
+    });
+  }
+
+  private async mostrarMensaje(mensaje: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000,
+      position: 'bottom'
+    });
+    await toast.present();
+  }
+
 
   @ViewChild('miToast') miToast!: MiToastComponent;
   mostrarToast() {
     this.miToast.mostrar('¡Lista de la compra Creada!');
-  }
-
-  mostrarToastEliminar(){
-    this.miToast.mostrar('Receta Eliminada');
   }
 
   imagenCorazon: string = '../../assets/img/amor.png';
@@ -82,17 +127,17 @@ export class AlimentoveganosComponent  implements OnInit {
     const modal = await this.modalCtrl.create({
       component: FormulariosComponent,
       componentProps: {
-        titulo: 'Editar Receta'
+        titulo: 'Editar Receta',
+        receta: this.receta
       }
     });
 
-    modal.present();
+    await modal.present();
 
-    const {data, role} = await modal.onWillDismiss();
+    const { data, role } = await modal.onWillDismiss();
 
     if (role === 'guardar') {
       console.log('Datos guardados:', data);
     }
   }
-
 }

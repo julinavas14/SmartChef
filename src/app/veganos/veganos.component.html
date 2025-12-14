@@ -13,7 +13,7 @@
 </div>
 
 <div class="recetas-grid">
-  <ion-card *ngFor="let r of recetas" class="tarjeta-dinamica" [routerLink]="'/alimentoveganos'">
+  <ion-card *ngFor="let r of recetas" class="tarjeta-dinamica" (click)="abrirDetalle(r)">
     <ion-img [src]="r.imagen"></ion-img>
     <ion-card-header>
       <ion-card-title>{{ r.nombre }}</ion-card-title>

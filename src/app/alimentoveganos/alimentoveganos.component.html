@@ -1,18 +1,19 @@
 <app-header></app-header>
 <ion-content>
-  <ion-img src="../../assets/img/foto-ensalada.png" class="foto-princpial"></ion-img>
-  <h1 class="titulo">Ensalada Cesar Clásica</h1>
+  <ion-img [src]="receta?.imagen || '../../assets/img/foto-ensalada.png'" class="foto-princpial"></ion-img>
+
+  <h1 class="titulo">{{ receta?.nombre || 'Cargando receta...' }}</h1>
+
   <ion-card>
     <ion-card-header>
-      <ion-img [src]="imagenCorazon" class="foto-header-card" (click)="cambiarCorazon()">
-      </ion-img>
+      <ion-img [src]="imagenCorazon" class="foto-header-card" (click)="cambiarCorazon()"></ion-img>
     </ion-card-header>
     <div class="botones">
       <ion-button (click)="setOpenIngre(true)">Ver Ingredientes</ion-button>
       <ion-button (click)="setOpen(true)">Ver Receta</ion-button>
       <ion-button (click)="mostrarToast()">Crear Lista de Compra</ion-button>
       <ion-button (click)="abrirFormulario()">Editar Receta</ion-button>
-      <ion-button (click)="mostrarToastEliminar()">Eliminar Receta</ion-button>
+      <ion-button (click)="eliminarReceta()">Eliminar Receta</ion-button>
       <app-Mitoast #miToast></app-Mitoast>
     </div>
   </ion-card>

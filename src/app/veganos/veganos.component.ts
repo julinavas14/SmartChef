@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
-import { RouterLink } from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {
   IonButton,
   IonCard,
@@ -15,6 +15,7 @@ import { FormulariosComponent } from "../formularios/formularios.component";
 import { Receta } from "../modelos/receta";
 import { RecetaService } from "../servicios/receta-service";
 import { CommonModule } from '@angular/common';
+import { NavController } from '@ionic/angular';
 import {Formulario2Component} from "../formulario2/formulario2.component";
 
 @Component({
@@ -39,7 +40,7 @@ import {Formulario2Component} from "../formulario2/formulario2.component";
 export class VeganosComponent implements OnInit {
   recetas: Receta[] = [];
 
-  constructor(private modalCtrl: ModalController, private receta: RecetaService) {}
+  constructor(private modalCtrl: ModalController, private receta: RecetaService, private router: Router) {}
 
   ngOnInit(): void {
     this.receta.consultarRecetas().subscribe({
@@ -65,5 +66,11 @@ export class VeganosComponent implements OnInit {
       console.log('Receta guardada:', data);
       this.ngOnInit();
     }
+  }
+
+  abrirDetalle(receta: Receta) {
+    this.router.navigate(['/alimentoveganos'], {
+      state: { receta }
+    });
   }
 }
