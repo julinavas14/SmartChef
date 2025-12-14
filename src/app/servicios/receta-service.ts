@@ -23,4 +23,8 @@ export class RecetaService {
   eliminarReceta(id: number): Observable<any> {
     return this.http.delete(`${this.apiURL}/recetas/${id}`);
   }
+
+  modificarReceta(id: number, datosReceta: any): Observable<any> {
+    return this.http.put(`${this.apiURL}/recetas/modificar/${id}`, datosReceta);
+  }
 }

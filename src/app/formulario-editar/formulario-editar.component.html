@@ -11,31 +11,31 @@
   <form (ngSubmit)="onGuardar()">
     <ion-item>
       <ion-label position="stacked">Nombre Receta</ion-label>
-      <ion-input [(ngModel)]="nombre" name="Nombre Receta"></ion-input>
+      <ion-input [(ngModel)]="nombre" name="nombre"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Imagen</ion-label>
-      <ion-input type="text" name="Imagen"></ion-input>
+      <ion-label position="stacked">URL Imagen</ion-label>
+      <ion-input [(ngModel)]="imagen" name="imagen" type="url" placeholder="https://..."></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Descripción</ion-label>
-      <ion-input type="text" name="Descripción"></ion-input>
+      <ion-textarea [(ngModel)]="descripcion" name="descripcion"></ion-textarea>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Tipo</ion-label>
-      <ion-input type="number" name="Tipo"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Ingredientes</ion-label>
-      <ion-input type="text" name="Ingredientes"></ion-input>
+      <ion-label position="stacked">Categoría</ion-label>
+      <ion-select [(ngModel)]="id_tipo" name="id_tipo">
+        <ion-select-option value="1">Proteínas</ion-select-option>
+        <ion-select-option value="2">Veganos</ion-select-option>
+        <ion-select-option value="3">Postres</ion-select-option>
+        <ion-select-option value="4">Comida Basura</ion-select-option>
+      </ion-select>
     </ion-item>
 
     <div class="ion-padding-top">
-      <ion-button expand="block" type="submit">Guardar</ion-button>
+      <ion-button expand="block" type="submit">Guardar Cambios</ion-button>
       <ion-button expand="block" fill="clear" (click)="onCancelar()">Cancelar</ion-button>
     </div>
   </form>

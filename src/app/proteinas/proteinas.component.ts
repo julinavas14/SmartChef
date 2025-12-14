@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HeaderComponent} from "../header/header.component";
 import {FooterComponent} from "../footer/footer.component";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {
   IonButton,
   IonCard,
@@ -26,7 +26,7 @@ import {FormulariosComponent} from "../formularios/formularios.component";
 export class ProteinasComponent  implements OnInit {
   recetas: Receta[] = [];
 
-  constructor(private modalCtrl: ModalController, private receta: RecetaService) {}
+  constructor(private modalCtrl: ModalController, private receta: RecetaService, private router: Router) {}
 
   ngOnInit(): void {
     this.receta.consultarRecetas().subscribe({
@@ -52,6 +52,12 @@ export class ProteinasComponent  implements OnInit {
       console.log('Receta guardada:', data);
       this.ngOnInit();
     }
+  }
+
+  abrirDetalle(receta: Receta) {
+    this.router.navigate(['/alimentoveganos'], {
+      state: { receta }
+    });
   }
 
 }

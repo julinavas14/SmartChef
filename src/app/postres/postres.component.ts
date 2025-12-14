@@ -13,7 +13,7 @@ import {
 import {NgForOf} from "@angular/common";
 import {Receta} from "../modelos/receta";
 import {RecetaService} from "../servicios/receta-service";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {Formulario3Component} from "../formulario3/formulario3.component";
 
 @Component({
@@ -37,7 +37,7 @@ import {Formulario3Component} from "../formulario3/formulario3.component";
 export class PostresComponent  implements OnInit {
   recetas: Receta[] = [];
 
-  constructor(private modalCtrl: ModalController, private receta: RecetaService) {}
+  constructor(private modalCtrl: ModalController, private receta: RecetaService, private router: Router) {}
 
   ngOnInit(): void {
     this.receta.consultarRecetas().subscribe({
@@ -63,6 +63,12 @@ export class PostresComponent  implements OnInit {
       console.log('Receta guardada:', data);
       this.ngOnInit();
     }
+  }
+
+  abrirDetalle(receta: Receta) {
+    this.router.navigate(['/alimentoveganos'], {
+      state: { receta }
+    });
   }
 
 }

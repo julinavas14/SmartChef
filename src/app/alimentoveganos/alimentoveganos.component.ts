@@ -19,6 +19,8 @@ import { gitCompareOutline } from "ionicons/icons";
 import { Receta } from "../modelos/receta";
 import { Router } from '@angular/router';
 import {RecetaService} from "../servicios/receta-service";
+import {CommonModule} from "@angular/common";
+import {FormularioEditarComponent} from "../formulario-editar/formulario-editar.component";
 
 @Component({
   selector: 'app-alimentoveganos',
@@ -33,6 +35,7 @@ import {RecetaService} from "../servicios/receta-service";
     IonCard,
     IonCardHeader,
     IonButton,
+    CommonModule,
     MiToastComponent,
     IonIcon,
     IonModal,
@@ -47,7 +50,14 @@ import {RecetaService} from "../servicios/receta-service";
 })
 export class AlimentoveganosComponent implements OnInit {
 
-  receta: Receta | null = null;
+  receta: Receta = {
+    id_receta: undefined,
+    nombre: undefined,
+    imagen: undefined,
+    descripcion: undefined,
+    id_tipo: undefined,
+    ingredientes: []
+  };
 
   constructor(
     private modalCtrl: ModalController,
@@ -65,8 +75,8 @@ export class AlimentoveganosComponent implements OnInit {
       this.receta = navigation.extras.state['receta'] as Receta;
     }
 
-    if (!this.receta) {
-      console.warn('No se recibió receta. Podrías cargar por ID aquí más adelante.');
+    if (!this.receta.nombre) {
+      console.warn('No se recibió receta completa.');
     }
   }
 
@@ -124,8 +134,13 @@ export class AlimentoveganosComponent implements OnInit {
   }
 
   async abrirFormulario() {
+    if (!this.receta?.id_receta) {
+      alert('No se puede editar: receta sin ID');
+      return;
+    }
+
     const modal = await this.modalCtrl.create({
-      component: FormulariosComponent,
+      component: FormularioEditarComponent,
       componentProps: {
         titulo: 'Editar Receta',
         receta: this.receta
@@ -136,8 +151,9 @@ export class AlimentoveganosComponent implements OnInit {
 
     const { data, role } = await modal.onWillDismiss();
 
-    if (role === 'guardar') {
-      console.log('Datos guardados:', data);
+    if (role === 'guardar' && data) {
+      this.receta = data;
+      await this.mostrarMensaje('Receta actualizada correctamente');
     }
   }
 }

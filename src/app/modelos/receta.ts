@@ -4,4 +4,5 @@ export class Receta {
   imagen?: string;
   descripcion?: string;
   id_tipo?: number;
+  ingredientes?: string[];
 }
