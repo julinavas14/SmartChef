@@ -89,7 +89,7 @@ export class AlimentoveganosComponent implements OnInit {
     this.recetaService.eliminarReceta(this.receta.id_receta).subscribe({
       next: async () => {
         await this.mostrarMensaje('Receta eliminada');
-        this.router.navigate(['/veganos']);
+        this.router.navigate(['/home']);
       },
       error: async (err) => {
         console.error('Error al eliminar:', err);
