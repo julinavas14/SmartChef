@@ -15,7 +15,6 @@ import { FormulariosComponent } from "../formularios/formularios.component";
 import { Receta } from "../modelos/receta";
 import { RecetaService } from "../servicios/receta-service";
 import { CommonModule } from '@angular/common';
-import { NavController } from '@ionic/angular';
 import {Formulario2Component} from "../formulario2/formulario2.component";
 
 @Component({
@@ -46,7 +45,7 @@ export class VeganosComponent implements OnInit {
     this.receta.consultarRecetas().subscribe({
       next: (data: Receta[]) => {
         this.recetas = data.filter(receta => receta.id_tipo === 2);
-      },
+        },
       error: (err) => {
         console.error('Error al cargar recetas:', err);
       }
