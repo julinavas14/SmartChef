@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Receta } from '../modelos/receta';
+import { Ingrediente } from '../modelos/ingrediente';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,13 @@ export class RecetaService {
 
   modificarReceta(id: number, datosReceta: any): Observable<any> {
     return this.http.put(`${this.apiURL}/recetas/modificar/${id}`, datosReceta);
+  }
+
+  obtenerTodosIngredientes() {
+    return this.http.get<Ingrediente[]>('api/ingredientes/all');
+  }
+
+  agregarIngredienteAReceta(dto: { id_receta: number; id_ingrediente: number; cantidad: string }) {
+    return this.http.post('/ingredientes/anadir', dto);
   }
 }

@@ -3,24 +3,42 @@ import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import {
   AlertController,
-  IonButton, IonButtons,
+  IonButton,
+  IonButtons,
   IonCard,
   IonCardHeader,
   IonContent,
   IonHeader,
   IonIcon,
-  IonImg, IonItem, IonLabel, IonList,
-  IonModal, IonTitle, IonToolbar, ModalController, ToastController
+  IonImg,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonModal,
+  IonTitle,
+  IonToolbar,
+  ModalController,
+  ToastController,
+  IonCheckbox,
+  IonSearchbar,
+  IonInput
 } from "@ionic/angular/standalone";
 import { MiToastComponent } from "../Mitoast/mi-toast.component";
-import { FormulariosComponent } from "../formularios/formularios.component";
 import { addIcons } from "ionicons";
 import { gitCompareOutline } from "ionicons/icons";
 import { Receta } from "../modelos/receta";
 import { Router } from '@angular/router';
-import {RecetaService} from "../servicios/receta-service";
-import {CommonModule} from "@angular/common";
-import {FormularioEditarComponent} from "../formulario-editar/formulario-editar.component";
+import { RecetaService } from "../servicios/receta-service";
+import { CommonModule } from "@angular/common";
+import { FormularioEditarComponent } from "../formulario-editar/formulario-editar.component";
+import { FormsModule } from '@angular/forms';
+import { Ingrediente } from "../modelos/ingrediente";
+
+interface IngredienteSeleccionado {
+  ingrediente: Ingrediente;
+  seleccionado: boolean;
+  cantidad: string;
+}
 
 @Component({
   selector: 'app-alimentoveganos',
@@ -45,7 +63,11 @@ import {FormularioEditarComponent} from "../formulario-editar/formulario-editar.
     IonButtons,
     IonList,
     IonLabel,
-    IonItem
+    IonItem,
+    IonCheckbox,
+    IonSearchbar,
+    IonInput,
+    FormsModule
   ]
 })
 export class AlimentoveganosComponent implements OnInit {
@@ -58,6 +80,11 @@ export class AlimentoveganosComponent implements OnInit {
     id_tipo: undefined,
     ingredientes: []
   };
+
+  ingredientesDisponibles: IngredienteSeleccionado[] = [];
+  ingredientesFiltrados: IngredienteSeleccionado[] = [];
+  AbrirAgregarIngredientes = false;
+  cargandoIngredientes = false;
 
   constructor(
     private modalCtrl: ModalController,
@@ -107,7 +134,6 @@ export class AlimentoveganosComponent implements OnInit {
     await toast.present();
   }
 
-
   @ViewChild('miToast') miToast!: MiToastComponent;
   mostrarToast() {
     this.miToast.mostrar('¡Lista de la compra Creada!');
@@ -155,5 +181,71 @@ export class AlimentoveganosComponent implements OnInit {
       this.receta = data;
       await this.mostrarMensaje('Receta actualizada correctamente');
     }
+  }
+
+
+  async abrirAgregarIngredientes() {
+    this.cargandoIngredientes = true;
+    this.AbrirAgregarIngredientes = true;
+
+    this.ingredientesDisponibles = [];
+    this.ingredientesFiltrados = [];
+
+    this.recetaService.obtenerTodosIngredientes().subscribe({
+      next: (ingredientes: Ingrediente[]) => {
+        if (!ingredientes || ingredientes.length === 0) {
+          this.mostrarMensaje('No hay ingredientes disponibles');
+          this.cargandoIngredientes = false;
+          return;
+        }
+        this.ingredientesDisponibles = ingredientes.map(i => {
+          const existente = this.receta.ingredientes?.find(ing => {
+            const nombreReceta = ing.trim().toLowerCase();
+            const nombreIng = i.nombre_ingrediente?.trim().toLowerCase() || '';
+            const soloNombre = nombreReceta.replace(/^\d+\s*\w*\s*/, '').trim();
+            return soloNombre === nombreIng;
+          });
+
+          return {
+            ingrediente: i,
+            seleccionado: !!existente,
+            cantidad: existente ? existente.trim().split(' ', 1)[0] || '' : ''
+          };
+        });
+
+        this.ingredientesFiltrados = [...this.ingredientesDisponibles];
+        this.cargandoIngredientes = false;
+      },
+      error: (err) => {
+        console.error('Error cargando ingredientes:', err);
+        this.mostrarMensaje('Error al cargar los ingredientes');
+        this.cargandoIngredientes = false;
+      }
+    });
+  }
+
+  buscarIngredientes(event: any) {
+    const termino = (event.target.value || '').trim().toLowerCase();
+    if (!termino) {
+      this.ingredientesFiltrados = [...this.ingredientesDisponibles];
+      return;
+    }
+    this.ingredientesFiltrados = this.ingredientesDisponibles.filter(item =>
+      item.ingrediente.nombre_ingrediente?.toLowerCase().includes(termino)
+    );
+  }
+
+  guardarIngredientes() {
+    const nuevosIngredientes = this.ingredientesDisponibles
+      .filter(item => item.seleccionado && item.cantidad && item.cantidad.trim() !== '')
+      .map(item => `${item.cantidad.trim()} ${item.ingrediente.nombre_ingrediente}`);
+
+    this.receta.ingredientes = nuevosIngredientes;
+    this.cerrarAgregarIngredientes();
+    this.mostrarMensaje('Ingredientes actualizados correctamente');
+  }
+
+  cerrarAgregarIngredientes() {
+    this.AbrirAgregarIngredientes = false;
   }
 }

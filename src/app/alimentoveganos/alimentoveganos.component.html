@@ -14,6 +14,7 @@
       <ion-button (click)="mostrarToast()">Crear Lista de Compra</ion-button>
       <ion-button (click)="abrirFormulario()">Editar Receta</ion-button>
       <ion-button (click)="eliminarReceta()">Eliminar Receta</ion-button>
+      <ion-button (click)="abrirAgregarIngredientes()">Añadir Ingredientes</ion-button>
       <app-Mitoast #miToast></app-Mitoast>
     </div>
   </ion-card>
@@ -32,11 +33,9 @@
       </ion-header>
       <ion-content class="ion-padding">
         <div class="preparacion-texto">
-          <!-- Usamos ng-container para el *ngIf -->
           <ng-container *ngIf="receta.descripcion; else sinPreparacion">
             <p>{{ receta.descripcion }}</p>
           </ng-container>
-
           <ng-template #sinPreparacion>
             <p class="ion-text-center ion-padding">
               No hay instrucciones de preparación disponibles para esta receta.
@@ -62,13 +61,51 @@
           <ion-item *ngFor="let ingrediente of receta?.ingredientes">
             <ion-label>{{ ingrediente }}</ion-label>
           </ion-item>
-
           <ion-item *ngIf="!receta?.ingredientes || receta?.ingredientes?.length === 0">
             <ion-label class="ion-text-center">
               <p>No hay ingredientes asociados a esta receta.</p>
             </ion-label>
           </ion-item>
         </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal [isOpen]="AbrirAgregarIngredientes">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Añadir Ingredientes</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="cerrarAgregarIngredientes()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-searchbar class="searchbar-personalizado" placeholder="Buscar ingrediente..." (ionInput)="buscarIngredientes($event)"></ion-searchbar>
+
+        <ion-list *ngIf="!cargandoIngredientes" class="lista-ingredientes-personalizada">
+          <ion-item *ngFor="let item of ingredientesFiltrados" class="item-ingrediente">
+            <ion-checkbox slot="start" [(ngModel)]="item.seleccionado"></ion-checkbox>
+            <ion-label class="label-nombre">{{ item.ingrediente.nombre_ingrediente }}</ion-label>
+            <ion-input
+              class="input-cantidad"
+              placeholder="Cantidad (ej: 200g, 2 uds)"
+              [(ngModel)]="item.cantidad"
+              [disabled]="!item.seleccionado">
+            </ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="ingredientesFiltrados.length === 0">
+            <ion-label class="ion-text-center">No se encontraron ingredientes</ion-label>
+          </ion-item>
+        </ion-list>
+
+        <div class="contenedor-boton-guardar">
+          <ion-button expand="block" (click)="guardarIngredientes()">
+            Guardar seleccionados
+          </ion-button>
+        </div>
       </ion-content>
     </ng-template>
   </ion-modal>
