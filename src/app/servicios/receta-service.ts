@@ -32,8 +32,4 @@ export class RecetaService {
   obtenerTodosIngredientes() {
     return this.http.get<Ingrediente[]>('api/ingredientes/all');
   }
-
-  agregarIngredienteAReceta(dto: { id_receta: number; id_ingrediente: number; cantidad: string }) {
-    return this.http.post('/ingredientes/anadir', dto);
-  }
 }
