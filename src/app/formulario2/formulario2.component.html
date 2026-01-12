@@ -26,11 +26,6 @@
 
     <input type="hidden" [(ngModel)]="nuevaReceta.idTipo" name="idTipo" value="2">
 
-    <ion-item>
-      <ion-label position="stacked">Ingredientes (separados por comas)</ion-label>
-      <ion-textarea [(ngModel)]="nuevaReceta.ingredientesTexto" name="ingredientesTexto"></ion-textarea>
-    </ion-item>
-
     <div class="ion-padding-top">
       <ion-button expand="block" color="primary" type="submit" [disabled]="!nuevaReceta.nombre">
         Guardar Receta
