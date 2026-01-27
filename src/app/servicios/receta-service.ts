@@ -9,7 +9,7 @@ import { Ingrediente } from '../modelos/ingrediente';
 })
 export class RecetaService {
 
-  private apiURL = 'http://localhost:8080';
+  private apiURL = 'https://smartchef-backend-h4ve.onrender.com';
 
   constructor(private http: HttpClient) { }
 
