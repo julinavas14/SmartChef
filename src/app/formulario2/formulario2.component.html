@@ -16,6 +16,7 @@
 
     <ion-item>
       <ion-label position="stacked">URL de la Imagen</ion-label>
+      <ion-button (click)="takePhoto()">Tomar foto</ion-button>
       <ion-input [(ngModel)]="nuevaReceta.imagen" name="imagen" type="url" placeholder="https://ejemplo.com/imagen.jpg"></ion-input>
     </ion-item>
 

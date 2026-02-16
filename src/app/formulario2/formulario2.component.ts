@@ -1,7 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {IonicModule, ModalController} from "@ionic/angular";
 import {RecetaService} from "../servicios/receta-service";
+import {Camera, CameraResultType} from '@capacitor/camera';
 
 @Component({
     selector: 'app-formulario2',
@@ -13,17 +14,38 @@ import {RecetaService} from "../servicios/receta-service";
         IonicModule
     ]
 })
-export class Formulario2Component{
+export class Formulario2Component implements OnInit {
   @Input() titulo: string = 'Nueva Receta Con Proteína';
+
+  img: any;
 
   nuevaReceta: any = {
     nombre: '',
     imagen: '',
     descripcion: '',
-    ingredientesTexto: '',
     idTipo: 2
   };
 
+  ngOnInit() {
+    this.initialiceCamera();
+  }
+
+
+  async initialiceCamera() {
+    await Camera.requestPermissions({
+      permissions: ['photos', 'camera']
+    });
+  }
+
+   async takePhoto(){
+    let photo = await Camera.getPhoto({
+      quality: 90,
+      resultType: CameraResultType.Base64
+    });
+
+    this.img = `data:image/jpeg;base64,${photo.base64String}`;
+    this.nuevaReceta.imagen = this.img;
+  }
 
   constructor(private modalCtrl: ModalController, private recetaService: RecetaService) {}
 
